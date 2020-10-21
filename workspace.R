@@ -4,7 +4,7 @@ library(scran)
 library(igraph)
 
 options("tercen.workflowId" = "f6d7883d26d906b1a8c4a3800d0616d4")
-options("tercen.stepId"     = "1d5b9f2e-760b-40a0-a53e-3d831a939da8")
+options("tercen.stepId"     = "cf9376a1-ea5d-44b5-92a2-3e7338e4948a")
 
 getOption("tercen.workflowId")
 getOption("tercen.stepId")
@@ -22,3 +22,10 @@ if (clustering_method == "Walktrap") {
 } else if (clustering_method == "Louvain") {
   clusters <- cluster_louvain(g)$membership
 }
+
+output_frame <- tibble(.ci = 0:(length(clusters)-1),
+                       cluster = as.character(clusters))
+
+ctx$addNamespace(output_frame) %>%
+  ctx$save()
+
