@@ -3,12 +3,6 @@ library(dplyr)
 library(scran)
 library(igraph)
 
-options("tercen.workflowId" = "f6d7883d26d906b1a8c4a3800d0616d4")
-options("tercen.stepId"     = "cf9376a1-ea5d-44b5-92a2-3e7338e4948a")
-
-getOption("tercen.workflowId")
-getOption("tercen.stepId")
-
 ctx <- tercenCtx()
 
 k <- as.integer(ctx$op.value('k'))
