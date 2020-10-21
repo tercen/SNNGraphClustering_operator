@@ -24,7 +24,7 @@ if (clustering_method == "Walktrap") {
 }
 
 output_frame <- tibble(.ci = 0:(length(clusters)-1),
-                       cluster = as.character(clusters))
+                       cluster = as.numeric(clusters))
 
 ctx$addNamespace(output_frame) %>%
   ctx$save()
