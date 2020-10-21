@@ -6,7 +6,7 @@
   "urls": ["https://github.com/tercen/template_R_operator"],
   "properties": [
     {
-      "kind": "IntegerProperty",
+      "kind": "DoubleProperty",
       "name": "k",
       "defaultValue": 5,
       "description": "Number of neighbours to use in clustering"
