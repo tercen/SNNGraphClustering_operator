@@ -1,10 +1,38 @@
 {
-  "name": "Template R operator",
-  "description": "Return the medium value of a cell",
-  "tags": ["template"],
+  "name": "SNNGraph-based clustering operator",
+  "description": "Perform SNNGraph-based and return cluster labelling",
+  "tags": ["clustering", "single-cell RNA-seq", "transcriptomics", "genomics"],
   "authors": ["tercen"],
   "urls": ["https://github.com/tercen/template_R_operator"],
-  "properties": []
+  "properties": [
+    {
+      "kind": "IntegerProperty",
+      "name": "k",
+      "defaultValue": 5,
+      "description": "Number of neighbours to use in clustering"
+    },
+    {
+    "kind": "EnumeratedProperty",
+    "name": "edge_weighting",
+    "defaultValue": "rank",
+    "values": [
+      "rank",
+      "number",
+      "jaccard"
+    ],
+    "description": "Type of edge weighting to use in graph clustering"
+  },
+  {
+    "kind": "EnumeratedProperty",
+    "name": "clustering_method",
+    "defaultValue": "Walktrap",
+    "values": [
+      "Walktrap",
+      "Louvain"
+    ],
+    "description": "Graph clustering algorithm to use"
+  }
+  ]
 }
 
 
