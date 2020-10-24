@@ -17,8 +17,7 @@
     "defaultValue": "rank",
     "values": [
       "rank",
-      "number",
-      "jaccard"
+      "number"
     ],
     "description": "Type of edge weighting to use in graph clustering"
   },
