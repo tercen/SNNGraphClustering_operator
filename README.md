@@ -1,46 +1,35 @@
-# Template R operator for Tercen
-
-The `Template R operator` is a template repository for the creation of R operators in Tercen. An overview of steps for developing an operator are:
-
-1. create a github repo
-2. install tercen_studio
-3. login to tercen_studio
-4. git clone the newly created repo
-5. start developing in R in tercen_studio
-6. add R packages to the repo
-7. push to the github repo
-8. go to tercen and install the operator
-
-More information can be found in [Tercen app builder's guide](https://tercen.github.io/appbuilders-guide/).
-
-Below is the operator README standard structure:
+# SNN Graph-based clustering operator
 
 ##### Description
-
-The `Template R operator` is a template repository for the creation of R operators in Tercen.
+`SNNGraph-based clustering operator` performs clustering on single-cell RNA-seq data and returns the cluster assigned to each cell. It should be used on a reduced-dimensionality version of the scRNA-seq data (the first 25 principal components, for example).
 
 ##### Usage
 
 Input projection|.
 ---|---
-`x-axis`        | type, description 
-`y-axis`        | type, description 
-`row`           | type, description 
-`column`        | type, description 
-`colors`        | type, description 
-`labels`        | type, description 
+`x-axis`        | character, cell ID
+`row names`     | character, principal component name
+`y-axis`        | numeric, principal component value
+
+
+
+| Input parameters | Description                                                                              |
+| -----------------| ---------------------------------------------------------------------------------------- |
+| `k`          | Numeric, number of nearest neighbors to consider during graph construction (default = 5)             |
+| `edge_weighting`  | "rank" or "number", specifying the type of weighting scheme to use for shared neighbors in graph construction (default = "rank") |
+| `clustering_method` | "Walktrap" or "Louvain", algorithm to find clusters inside graph    |
 
 Output relations|.
 ---|---
-`output_var`        | output relation
-`Operator view`        | view of the Shiny application
+`cluster`       | numeric, cluster to which a cell has been assigned 
 
 ##### Details
+The operator uses the QC worklfow described in the corresponding chapter of the ["Orchestrating Single-Cell Analysis"](https://osca.bioconductor.org/clustering.html) book. For this it uses the _scran_ BioConductor package.
 
-Details on the computation.
+#### References
+Amezquita, et. al. ["Orchestrating single-cell analysis with BioConductor"](https://www.nature.com/articles/s41592-019-0654-x), Nature Methods (2019)
 
 ##### See Also
 
-[template_shiny_operator](https://github.com/tercen/template_shiny_operator)
-, [template_docker_operator](https://github.com/tercen/template_docker_operator)
+#### Examples
 
