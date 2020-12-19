@@ -1,5 +1,5 @@
 {
-  "name": "SNNGraph-based clustering operator",
+  "name": "SNNGraphClustering_operator",
   "description": "Perform SNNGraph-based and return cluster labelling",
   "tags": ["clustering", "single-cell RNA-seq", "transcriptomics", "genomics"],
   "authors": ["tercen"],
