@@ -1,9 +1,9 @@
 {
-  "name": "SNNGraphClustering_operator",
+  "name": "SNN Graph Clustering",
   "description": "Perform SNNGraph-based and return cluster labelling",
-  "tags": ["clustering", "single-cell RNA-seq", "transcriptomics", "genomics"],
+  "tags": ["omics", "scRNA-seq", "clustering"],
   "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/template_R_operator"],
+  "urls": ["https://github.com/tercen/SNNGraphClustering_operator"],
   "properties": [
     {
       "kind": "DoubleProperty",
