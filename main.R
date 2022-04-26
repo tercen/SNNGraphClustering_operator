@@ -21,8 +21,11 @@ if (clustering_method == "Walktrap") {
   clusters <- cluster_louvain(g)$membership
 }
 
-output_frame <- tibble(.ci = 0:(length(clusters)-1),
-                       cluster = as.numeric(clusters))
+
+clusters <- sprintf(paste0("c%0", max(nchar(as.character(clusters))), "d"), clusters)
+
+output_frame <- tibble(.ci = 0:(length(clusters) - 1),
+                       cluster_id = clusters)
 
 ctx$addNamespace(output_frame) %>%
   ctx$save()
