@@ -1,9 +1,9 @@
 {
-  "name": "SNN Graph Clustering",
-  "description": "Perform SNNGraph-based and return cluster labelling",
-  "tags": ["omics", "scRNA-seq", "clustering"],
+  "name": "SNN Clustering",
+  "description": "Perform SNN graph-based and return cluster membership.",
+  "tags": ["omics", "scRNAseq", "clustering"],
   "authors": ["tercen"],
-  "urls": ["https://github.com/tercen/SNNGraphClustering_operator"],
+  "urls": ["https://github.com/tercen/snn_clustering_operator"],
   "properties": [
     {
       "kind": "DoubleProperty",
@@ -12,25 +12,17 @@
       "description": "Number of neighbours to use in clustering"
     },
     {
-    "kind": "EnumeratedProperty",
-    "name": "edge_weighting",
-    "defaultValue": "rank",
-    "values": [
-      "rank",
-      "number"
-    ],
-    "description": "Type of edge weighting to use in graph clustering"
-  },
-  {
-    "kind": "EnumeratedProperty",
-    "name": "clustering_method",
-    "defaultValue": "Walktrap",
-    "values": [
-      "Walktrap",
-      "Louvain"
-    ],
-    "description": "Graph clustering algorithm to use"
-  }
+      "kind": "DoubleProperty",
+      "name": "snn_eps",
+      "defaultValue": 4,
+      "description": "Two objects are only reachable from each other if they share at least eps nearest neighbors."
+    },
+    {
+      "kind": "DoubleProperty",
+      "name": "snn_minPts",
+      "defaultValue": 16,
+      "description": "Minimum number of points that share at least eps nearest neighbors for a point to be considered a core points."
+    }
   ]
 }
 

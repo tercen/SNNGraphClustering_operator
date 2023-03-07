@@ -1,31 +1,42 @@
-library(tercen)
-library(dplyr)
-library(scran)
-library(igraph)
+suppressPackageStartupMessages(expr = {
+  library(dbscan)
+  library(tidyr)
+  library(dplyr)
+  library(tercen)
+})
 
-ctx <- tercenCtx()
+ctx = tercenCtx()
+x <- ctx$as.matrix()
 
-k <- as.integer(ctx$op.value('k'))
-edge_weighting <- as.character(ctx$op.value('edge_weighting'))
-clustering_method <- as.character(ctx$op.value('clustering_method'))
+k <- ctx$op.value("k", as.double, 2)
+snn_eps <- ctx$op.value("snn_eps", as.double, 4)
+snn_minPts <- ctx$op.value("snn_minPts", as.double, 16)
 
-pca_matrix <- ctx$as.matrix()
+# Run KNN: find neighbours
+knn <- kNN(
+  x,
+  k = k,
+  query = NULL,
+  sort = TRUE,
+  search = "kdtree",
+  bucketSize = 10,
+  splitRule = "suggest",
+  approx = 0
+)
 
-snngraph <- buildSNNGraph(pca_matrix,
-                          k = k,
-                          type = edge_weighting)
+# Run SNN: clustering
+clst <- sNNclust(
+  knn,
+  k = k,
+  eps = snn_eps,
+  minPts = snn_minPts
+)
 
-if (clustering_method == "Walktrap") {
-  clusters <- cluster_walktrap(snngraph)$membership
-} else if (clustering_method == "Louvain") {
-  clusters <- cluster_louvain(g)$membership
-}
-
-
-clusters <- sprintf(paste0("c%0", max(nchar(as.character(clusters))), "d"), clusters)
-
-output_frame <- tibble(.ci = 0:(length(clusters) - 1),
-                       cluster_id = clusters)
-
-ctx$addNamespace(output_frame) %>%
+clst$cluster <- as.double(clst$cluster + 1)
+tibble(
+  cluster_number = clst$cluster,
+  cluster_id = sprintf(paste0("c%0", max(nchar(as.character(clst$cluster))), "d"), clst$cluster)
+) %>% 
+  mutate(.ci = seq_len(nrow(.)) - 1L) %>%
+  ctx$addNamespace() %>%
   ctx$save()
