@@ -6,7 +6,7 @@ suppressPackageStartupMessages(expr = {
 })
 
 ctx = tercenCtx()
-x <- ctx$as.matrix()
+x <- ctx$as.matrix() %>% t()
 
 k <- ctx$op.value("k", as.double, 2)
 snn_eps <- ctx$op.value("snn_eps", as.double, 4)
