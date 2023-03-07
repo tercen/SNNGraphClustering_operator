@@ -19,6 +19,11 @@
       "kind": "PropertyValue",
       "name": "k",
       "value": "2"
+    },
+    {
+      "kind": "PropertyValue",
+      "name": "snn_eps",
+      "value": "4"
     }
   ],
   "relTol": 1e-05

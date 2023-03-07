@@ -8,13 +8,13 @@
     {
       "kind": "DoubleProperty",
       "name": "k",
-      "defaultValue": 5,
+      "defaultValue": 20,
       "description": "Number of neighbours to use in clustering"
     },
     {
       "kind": "DoubleProperty",
       "name": "snn_eps",
-      "defaultValue": 4,
+      "defaultValue": 0.8,
       "description": "Two objects are only reachable from each other if they share at least eps nearest neighbors."
     },
     {
