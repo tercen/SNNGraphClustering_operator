@@ -1,6 +1,6 @@
 {
   "name": "SNN Clustering",
-  "description": "Perform SNN graph-based and return cluster membership.",
+  "description": "Performs SNN graph-based clustering and return group membership.",
   "tags": [
     "omics",
     "sc-RNA-seq",
